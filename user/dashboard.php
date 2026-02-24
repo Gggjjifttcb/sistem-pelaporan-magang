@@ -198,7 +198,7 @@ body {
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="konfirmasi" value="1">
               <label class="form-check-label">
-                Saya telah meninjau laporan dan menyatakan isi laporan sudah benar
+                konfirmasi
               </label>
             </div>
           </div>
