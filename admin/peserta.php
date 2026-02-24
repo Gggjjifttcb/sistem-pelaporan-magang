@@ -52,7 +52,7 @@ AND id NOT IN (SELECT user_id FROM peserta_magang)
 </div>
 
 <div class="col">
-<input type="text" name="periode" class="form-control" placeholder="Periode (Des 2025 - Jun 2026)" required>
+<input type="text" name="periode" class="form-control" placeholder=" Periode magang" required>
 </div>
 
 <div class="col">

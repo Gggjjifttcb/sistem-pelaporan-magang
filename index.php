@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
-        initialDate: '2025-12-01',
+        initialDate: '2025-11-01',
         validRange: {
-            start: '2025-12-01',
+            start: '2025-11-01',
             end: '2026-07-01'
         },
         events: <?= json_encode($events) ?>,
