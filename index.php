@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "config/koneksi.php";
 
 $user_id = isset($_GET['user']) ? $_GET['user'] : '';

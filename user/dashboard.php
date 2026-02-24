@@ -145,7 +145,7 @@ body {
 <body>
 
 <div class="card-modern">
-    <h3>Data Magang</h3>
+    <h3>Peserta Magang</h3>
     <p><span class="info-label">Nama:</span> <span class="info-value"><?= $_SESSION['nama']; ?></span></p>
     <?php if($peserta){ ?>
         <p><span class="info-label">Posisi:</span> <span class="info-value"><?= $peserta['posisi']; ?></span></p>
@@ -282,6 +282,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
-
+<a href="../auth/logout.php">Logout</a>
 </body>
 </html>

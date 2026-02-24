@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../config/koneksi.php";
 if($_SESSION['role']!='admin'){
     header("Location: ../auth/login.php");
