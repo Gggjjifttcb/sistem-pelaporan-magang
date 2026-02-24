@@ -178,35 +178,31 @@ body {
             <input type="date" name="tanggal" id="tanggal" class="form-control" readonly required>
           </div>
           <div class="mb-2">
-    <label>Keterangan</label>
-    <select name="status" id="status" class="form-control" required>
-        <option value="">-- Pilih --</option>
-        <option value="hadir">Hadir</option>
-        <option value="tidak_hadir_ket">Tidak Hadir dengan Keterangan</option>
-        <option value="tidak_hadir_tanpa_ket">Tidak Hadir Tanpa Keterangan</option>
-    </select>
-</div>
-
-<div id="formHadir" style="display:none;">
-    <textarea name="uraian" class="form-control mb-2" placeholder="Uraian Aktifitas"></textarea>
-    <textarea name="pembelajaran" class="form-control mb-2" placeholder="Pembelajaran"></textarea>
-    <textarea name="kendala" class="form-control mb-2" placeholder="Kendala"></textarea>
-</div>
-
-<div id="formAlasan" style="display:none;">
-    <textarea name="alasan" class="form-control mb-2" placeholder="Alasan tidak hadir"></textarea>
-</div>
-
-<!-- KONFIRMASI WAJIB UNTUK SEMUA -->
-<div id="formKonfirmasi" style="display:none;">
-    <div class="form-check mt-2">
-        <input class="form-check-input" type="checkbox" name="konfirmasi" id="konfirmasi" value="1" required>
-        <label class="form-check-label">
-            Saya menyatakan bahwa laporan yang saya isi sudah benar dan dapat dipertanggungjawabkan.
-        </label>
-    </div>
-</div>
-
+            <label>Keterangan</label>
+            <select name="status" id="status" class="form-control" required>
+              <option value="">-- Pilih --</option>
+              <option value="hadir">Hadir</option>
+              <option value="tidak_hadir_ket">Tidak Hadir dengan Keterangan</option>
+              <option value="tidak_hadir_tanpa_ket">Tidak Hadir Tanpa Keterangan</option>
+            </select>
+          </div>
+          <div id="formHadir" style="display:none;">
+            <textarea name="uraian" class="form-control mb-2" placeholder="Uraian Aktifitas"></textarea>
+            <textarea name="pembelajaran" class="form-control mb-2" placeholder="Pembelajaran yang diperoleh"></textarea>
+            <textarea name="kendala" class="form-control mb-2" placeholder="Kendala yang dialami"></textarea>
+          </div>
+          <div id="formAlasan" style="display:none;">
+            <textarea name="alasan" class="form-control mb-2" placeholder="Alasan tidak hadir"></textarea>
+          </div>
+          <div id="formKonfirmasi" style="display:none;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="konfirmasi" value="1">
+              <label class="form-check-label">
+                Saya telah meninjau laporan dan menyatakan isi laporan sudah benar
+              </label>
+            </div>
+          </div>
+        </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Simpan</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -275,29 +271,14 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 
     document.getElementById('status').addEventListener('change', function(){
-
-    let status = this.value;
-
-    document.getElementById('formHadir').style.display = 'none';
-    document.getElementById('formAlasan').style.display = 'none';
-    document.getElementById('formKonfirmasi').style.display = 'none';
-
-    if(status === 'hadir'){
-        document.getElementById('formHadir').style.display = 'block';
-        document.getElementById('formKonfirmasi').style.display = 'block';
-    }
-
-    if(status === 'tidak_hadir_ket'){
-        document.getElementById('formAlasan').style.display = 'block';
-        document.getElementById('formKonfirmasi').style.display = 'block';
-    }
-
-    if(status === 'tidak_hadir_tanpa_ket'){
-        document.getElementById('formKonfirmasi').style.display = 'block';
-    }
-
-});
-
+        let status = this.value;
+        document.getElementById('formHadir').style.display = 'none';
+        document.getElementById('formAlasan').style.display = 'none';
+        document.getElementById('formKonfirmasi').style.display = 'none';
+        if(status === 'hadir') document.getElementById('formHadir').style.display='block';
+        if(status === 'tidak_hadir_ket') document.getElementById('formAlasan').style.display='block';
+        if(status === 'tidak_hadir_tanpa_ket') document.getElementById('formKonfirmasi').style.display='block';
+    });
 
 });
 </script>
