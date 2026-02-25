@@ -82,6 +82,10 @@ body {
     font-size: 14px;
 }
 
+.btn:hover {
+    opacity: 0.8;
+}
+    
 .btn-primary {
     background: #2563eb;
     color: white;
@@ -93,13 +97,27 @@ body {
 
 .btn-danger {
     background: #dc2626;
-    color: white;
+    color: rgb(233, 3, 3);
 }
 
 .btn-danger:hover {
     background: #b91c1c;
 }
+ .btn-logout {
+    width: 100%;
+    padding: 4px;
+    border: none;
+    border-radius: 8px;
+    background: #be1125;
+    color: rgb(216, 7, 7);
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    }
 
+        .btn-logout:hover {
+        background: #c40a10;
+    }
 /* Table */
 table {
     width: 100%;
