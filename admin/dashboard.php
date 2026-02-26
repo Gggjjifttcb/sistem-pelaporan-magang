@@ -49,7 +49,7 @@ if(!isset($_SESSION['login']) || $_SESSION['role']!='admin'){
 <div class="main">
 
     <div class="navbar">
-        <h3>Panel Kendali Administrasi</h3>
+        <h3>Sisten Pelaporan MaganHub</h3>
         <span>Sesi Aktif: <strong>Administrator Utama</strong></span>
     </div>
 
