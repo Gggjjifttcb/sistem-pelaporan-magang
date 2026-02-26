@@ -2,47 +2,35 @@
 session_start();
 include "../config/koneksi.php";
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = trim($_POST['username']);
+$password = trim($_POST['password']);
 
-// Cek apakah data terkirim
-if(empty($username) || empty($password)){
-    die("Username atau Password kosong");
+if (empty($username) || empty($password)) {
+    header("Location: login.php?error=invalid");
+    exit();
 }
 
-// Ambil user dari database
+$username = mysqli_real_escape_string($conn, $username);
 $query = mysqli_query($conn, "SELECT * FROM users WHERE username='$username'");
-
-if(!$query){
-    die("Query Error: " . mysqli_error($conn));
-}
-
 $user = mysqli_fetch_assoc($query);
 
-// Jika user ditemukan
-if($user){
+if ($user && $password == $user['password']) {
 
-    // LOGIN TANPA HASH (UNTUK TESTING)
-    if($password == $user['password']){
+    $_SESSION['login'] = true;
+    $_SESSION['id'] = $user['id'];
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['nama'] = $user['nama'];
 
-        $_SESSION['login'] = true;
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['nama'] = $user['nama'];
-
-        if($user['role'] == 'admin'){
-            header("Location: ../admin/dashboard.php");
-        } else {
-            header("Location: ../user/dashboard.php");
-        }
-
-        exit;
-
+    if ($user['role'] == 'admin') {
+        header("Location: ../admin/dashboard.php");
     } else {
-        echo "Password salah";
+        header("Location: ../user/dashboard.php");
     }
+    exit();
 
 } else {
-    echo "Username tidak ditemukan";
+    // Jika username tidak ada ATAU password salah
+    header("Location: login.php?error=invalid");
+    exit();
 }
 ?>

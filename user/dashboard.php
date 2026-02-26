@@ -136,6 +136,27 @@ body {
 .info-label { font-weight: 500; color: #6c757d; }
 .info-value { font-weight: 600; color: #2c3e50; }
 
+    .logout-button {
+        /* Warna Dasar */
+        background-color: #f44336; /* Merah */
+        color: white; /* Warna Teks */
+        
+        /* Bentuk dan Padding */
+        padding: 10px 20px;
+        border-radius: 5px; /* Ujung melengkung */
+        text-decoration: none; /* Menghilangkan garis bawah link */
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        display: inline-block;
+        
+        /* Transisi halus */
+        transition: background-color 0.3s ease;
+    }
+
+    /* Efek saat Kursor di atas tombol (Hover) */
+    .logout-button:hover {
+        background-color: #d32f2f; /* Merah lebih gelap */
+    }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -282,6 +303,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
-<a href="../auth/logout.php">Logout</a>
+<a href="../auth/logout.php" class="logout-button" >Logout</a>
 </body>
 </html>

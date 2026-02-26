@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +12,8 @@
 <div class="login-container">
     <h2>Login Sistem</h2>
 
+    <!-- PESAN ERROR -->
+    
     <form method="POST" action="proses_login.php">
         
         <div class="input-group">
@@ -20,6 +25,11 @@
             <label>Password</label>
             <input type="password" name="password" required>
         </div>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
+            <div class="error-message">
+                Username atau password yang dimasukkan salah.
+            </div>
+        <?php endif; ?> <br>
 
         <button type="submit" class="btn-login">Login</button>
 

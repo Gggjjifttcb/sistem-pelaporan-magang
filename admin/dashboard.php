@@ -11,44 +11,55 @@ if(!isset($_SESSION['login']) || $_SESSION['role']!='admin'){
     <title>Dashboard Admin</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <style>
-    .btn-logout {
-    width: 100%;
-    padding: 4px;
-    border: none;
-    border-radius: 8px;
-    background: #be1125;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
+    .logout-button {
+        /* Warna Dasar */
+        background-color: #f44336; /* Merah */
+        color: white; /* Warna Teks */
+        
+        /* Bentuk dan Padding */
+        padding: 8px 18px;
+        border-radius: 5px; /* Ujung melengkung */
+        text-decoration: none; /* Menghilangkan garis bawah link */
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        display: inline-block;
+        
+        /* Transisi halus */
+        transition: background-color 0.3s ease;
+
+        text-align: center; /* Menyelaraskan teks di tengah */
     }
 
-        .btn-logout:hover {
-        background: #c40a10;
+    /* Efek saat Kursor di atas tombol (Hover) */
+    .logout-button:hover {
+        background-color: #d32f2f; /* Merah lebih gelap */
     }
-    </style>
+</style>
 </head>
 <body>
 
 <div class="sidebar">
     <h2>Admin Panel</h2>
-    <a href="dashboard.php">Dashboard</a>
     <a href="user.php">Data User</a>
     <a href="peserta.php">Data peserta magang</a>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <button class="btn-logout" role="button"><a href="../auth/logout.php" >Logout</a></button>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="../auth/logout.php" class="logout-button" >Logout</a>
 </div>
 
 <div class="main">
 
     <div class="navbar">
-        <h3>Dashboard Admin</h3>
-        <span>Selamat Datang, Admin</span>
+        <h3>Panel Kendali Administrasi</h3>
+        <span>Sesi Aktif: <strong>Administrator Utama</strong></span>
     </div>
 
     <div class="card">
-        <h4>Ringkasan Sistem</h4>
-        <p>Selamat datang di Sistem Pelaporan Magang, platform digital untuk mendokumentasikan perjalanan profesional Anda secara efisien.</p>
+        <p>
+            Selamat datang di <strong>Portal Pelaporan Magang Terintegrasi</strong>. 
+            Platform digital ini difungsikan untuk standarisasi dokumentasi, 
+            efisiensi pelaporan, serta pemantauan perkembangan kompetensi profesional 
+            secara akurat dan transparan.
+        </p>
     </div>
 
 </div>

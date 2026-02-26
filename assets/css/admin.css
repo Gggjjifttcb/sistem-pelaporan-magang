@@ -103,21 +103,6 @@ body {
 .btn-danger:hover {
     background: #b91c1c;
 }
- .btn-logout {
-    width: 100%;
-    padding: 4px;
-    border: none;
-    border-radius: 8px;
-    background: #be1125;
-    color: rgb(216, 7, 7);
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-    }
-
-        .btn-logout:hover {
-        background: #c40a10;
-    }
 /* Table */
 table {
     width: 100%;
