@@ -26,30 +26,47 @@ $data = mysqli_query($conn,$query);
 
 $events = [];
 
-while($d = mysqli_fetch_assoc($data)){
+if($user_id > 0){
 
-    $color = "#28a745"; // hadir
+    $query = "
+    SELECT laporan.*, users.nama 
+    FROM laporan
+    JOIN users ON laporan.user_id = users.id
+    WHERE users.id = $user_id
+    ";
 
-    if($d['status'] == 'tidak_hadir_ket'){
-        $color = "#ffc107";
+    $data = mysqli_query($conn,$query);
+
+    if(!$data){
+        die("Query Error: " . mysqli_error($conn));
     }
 
-    if($d['status'] == 'tidak_hadir_tanpa_ket'){
-        $color = "#dc3545";
+    while($d = mysqli_fetch_assoc($data)){
+
+        $color = "#28a745";
+
+        if($d['status'] == 'tidak_hadir_ket'){
+            $color = "#ffc107";
+        }
+
+        if($d['status'] == 'tidak_hadir_tanpa_ket'){
+            $color = "#dc3545";
+        }
+
+        $events[] = [
+            'title' => $d['nama'],
+            'start' => $d['tanggal'],
+            'color' => $color,
+            'extendedProps' => [
+                'status' => $d['status'],
+                'uraian' => $d['uraian'],
+                'pembelajaran' => $d['pembelajaran'],
+                'kendala' => $d['kendala'],
+                'alasan' => $d['alasan']
+            ]
+        ];
     }
 
-    $events[] = [
-        'title' => $d['nama'],
-        'start' => $d['tanggal'],
-        'color' => $color,
-        'extendedProps' => [
-            'status' => $d['status'],
-            'uraian' => $d['uraian'],
-            'pembelajaran' => $d['pembelajaran'],
-            'kendala' => $d['kendala'],
-            'alasan' => $d['alasan']
-        ]
-    ];
 }
 ?>
 
@@ -76,6 +93,23 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 .fc-day-today { background: rgba(78,115,223,0.1) !important; border-radius: 12px; }
 .fc-daygrid-event { border-radius: 10px !important; padding: 3px 6px !important; font-size: 11px !important; font-weight: 500; border: none !important; transition: 0.3s ease; }
 .fc-daygrid-event:hover { transform: scale(1.05); opacity: 0.9; }
+.fc .fc-daygrid-day-top {
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.fc .fc-daygrid-day-number {
+    background: #f1f3f9;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
 .fc-theme-standard td, .fc-theme-standard th { border: none !important; }
 .fc-col-header-cell-cushion { font-weight: 500; color: #6c757d; font-size: 13px; }
 .modal-content { border-radius: 20px; border: none; box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
@@ -121,14 +155,14 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 
 <h3>Monitoring Laporan Magang</h3>
 <a href="auth/login.php" class="login-button">Login</a>
-<form method="GET" class="mb-3">
+<form method="GET" class="mb-4">
     <div class="row">
         <div class="col-md-4">
-            <select name="user" class="form-control" onchange="this.form.submit()">
-                <option value="">Semua User</option>
+            <select name="user" class="form-control" onchange="this.form.submit()" required>
+                <option value="">-- Pilih User --</option>
                 <?php while($u=mysqli_fetch_assoc($users)){ ?>
                     <option value="<?= $u['id'] ?>" <?= ($user_id==$u['id'])?'selected':'' ?>>
-                        <?= $u['nama'] ?>
+                        <?= htmlspecialchars($u['nama']) ?>
                     </option>
                 <?php } ?>
             </select>
