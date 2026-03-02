@@ -77,7 +77,9 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
-
+h4{
+  text-align:center;
+}
 /* =========================
    CALENDAR
 ========================= */
@@ -120,6 +122,23 @@ body {
 .fc-day-today { background: rgba(78,115,223,0.1) !important; border-radius: 12px; }
 .fc-daygrid-event { border-radius: 10px !important; padding: 3px 6px !important; font-size: 11px !important; font-weight: 500; border: none !important; transition: 0.3s ease; }
 .fc-daygrid-event:hover { transform: scale(1.05); opacity: 0.9; }
+.fc .fc-daygrid-day-top {
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.fc .fc-daygrid-day-number {
+    background: #f1f3f9;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
 .fc-theme-standard td, .fc-theme-standard th { border: none !important; }
 .fc-col-header-cell-cushion { font-weight: 500; color: #6c757d; font-size: 13px; }
 
