@@ -7,6 +7,12 @@ if(!isset($_SESSION['login']) || $_SESSION['role']!='user'){
     exit;
 }
 
+if(isset($_GET['date'])){
+    $tanggalAktif = $_GET['date'];
+} else {
+    $tanggalAktif = '2025-11-01'; // Default bulan awal laporan
+}
+
 $id = $_SESSION['id'];
 
 // Ambil data peserta magang
@@ -238,7 +244,7 @@ body {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Detail Laporan</h5>
+        <h5 class="modal-title">Detail Laporan Harian</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body" id="detailContent"></div>
@@ -257,8 +263,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
-        initialDate: '2025-11-01',
-        validRange: { start: '2025-11-01', end: '2026-07-01' },
+        initialDate: '<?= $tanggalAktif ?>',
+        validRange: { start: '2025-11-01', end: '2035-07-01' },
         events: <?= json_encode($events) ?>,
         dateClick: function(info) {
             let events = calendar.getEvents();
@@ -274,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let data = laporan.extendedProps;
                 let html = `<p><strong>Tanggal:</strong> ${info.dateStr}</p>
                             <p><strong>Status:</strong> ${laporan.title}</p>`;
-                if(data.uraian) html += `<p><strong>Uraian:</strong><br>${data.uraian}</p>`;
+                if(data.uraian) html += `<p><strong>Uraian Aktivitas:</strong><br>${data.uraian}</p>`;
                 if(data.pembelajaran) html += `<p><strong>Pembelajaran:</strong><br>${data.pembelajaran}</p>`;
                 if(data.kendala) html += `<p><strong>Kendala:</strong><br>${data.kendala}</p>`;
                 if(data.alasan) html += `<p><strong>Alasan:</strong><br>${data.alasan}</p>`;

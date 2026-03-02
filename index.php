@@ -2,6 +2,12 @@
 session_start();
 include "config/koneksi.php";
 
+if(isset($_GET['date'])){
+    $tanggalAktif = $_GET['date'];
+} else {
+    $tanggalAktif = '2025-11-01'; // Default bulan awal laporan
+}
+
 $user_id = isset($_GET['user']) ? $_GET['user'] : '';
 
 $users = mysqli_query($conn,"SELECT * FROM users WHERE role='user'");
@@ -83,6 +89,28 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 .alert-danger { border-radius: 15px; background: #ffe5e5; border: none; color: #b02a37; }
 .info-label { font-weight: 500; color: #6c757d; }
 .info-value { font-weight: 600; color: #2c3e50; }
+.login-button {
+        float: right;
+        /* Warna Dasar */
+        background-color: #366ff4; /* Merah */
+        color: white; /* Warna Teks */
+        
+        /* Bentuk dan Padding */
+        padding: 10px 20px;
+        border-radius: 5px; /* Ujung melengkung */
+        text-decoration: none; /* Menghilangkan garis bawah link */
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        display: inline-block;
+        
+        /* Transisi halus */
+        transition: background-color 0.3s ease;
+    }
+
+    /* Efek saat Kursor di atas tombol (Hover) */
+    .login-button:hover {
+        background-color: #366ff4; /* Merah lebih gelap */
+    }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -92,7 +120,7 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 <body class="container mt-4">
 
 <h3>Monitoring Laporan Magang</h3>
-
+<a href="auth/login.php" class="login-button">Login</a>
 <form method="GET" class="mb-3">
     <div class="row">
         <div class="col-md-4">
@@ -111,7 +139,7 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 <div class="calendar-wrapper">
     <div id="calendar"></div>
 </div>
->
+ 
 
 <!-- MODAL DETAIL -->
 <div class="modal fade" id="modalDetail" tabindex="-1">
@@ -119,7 +147,7 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title">Detail Laporan</h5>
+        <h5 class="modal-title">Detail Laporan Harian</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
@@ -136,10 +164,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
         initialView: 'dayGridMonth',
-        initialDate: '2025-11-01',
+        initialDate: '<?= $tanggalAktif ?>',
         validRange: {
             start: '2025-11-01',
-            end: '2026-07-01'
+            end: '2035-07-01'
         },
         events: <?= json_encode($events) ?>,
 
@@ -155,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if(data.status === 'hadir'){
                 html += `
-                    <b>Uraian:</b><br>${data.uraian ?? '-'}<br><br>
+                    <b>Uraian Aktivitas:</b><br>${data.uraian ?? '-'}<br><br>
                     <b>Pembelajaran:</b><br>${data.pembelajaran ?? '-'}<br><br>
                     <b>Kendala:</b><br>${data.kendala ?? '-'}
                 `;

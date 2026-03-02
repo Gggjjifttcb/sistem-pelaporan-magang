@@ -17,10 +17,7 @@ $cek = mysqli_query($conn,"SELECT * FROM laporan
                            AND tanggal='$tanggal'");
 
 if(mysqli_num_rows($cek) > 0){
-    echo "<script>
-            alert('Anda sudah menginput laporan di tanggal ini!');
-            window.location='dashboard.php';
-          </script>";
+    header("Location: dashboard.php?date=$tanggal&error=1");
     exit;
 }
 
@@ -30,8 +27,6 @@ mysqli_query($conn,"INSERT INTO laporan
 VALUES 
 ('$id','$tanggal','$status','$uraian','$pembelajaran','$kendala','$alasan')");
 
-echo "<script>
-        alert('Laporan berhasil disimpan!');
-        window.location='dashboard.php';
-      </script>";
+header("Location: dashboard.php?date=$tanggal&success=1");
+exit;
 ?>
