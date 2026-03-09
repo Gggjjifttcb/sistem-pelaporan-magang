@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include "config/koneksi.php";
 
 if(isset($_GET['date'])){
@@ -74,9 +74,11 @@ if($user_id > 0){
 <html>
 <head>
 <title>Monitoring Laporan Magang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
 
@@ -125,38 +127,162 @@ body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #
 .alert-danger { border-radius: 15px; background: #ffe5e5; border: none; color: #b02a37; }
 .info-label { font-weight: 500; color: #6c757d; }
 .info-value { font-weight: 600; color: #2c3e50; }
-.login-button {
-        float: right;
-        /* Warna Dasar */
-        background-color: #366ff4; /* Merah */
-        color: white; /* Warna Teks */
-        
-        /* Bentuk dan Padding */
-        padding: 10px 20px;
-        border-radius: 5px; /* Ujung melengkung */
-        text-decoration: none; /* Menghilangkan garis bawah link */
-        font-family: Arial, sans-serif;
-        font-weight: bold;
-        display: inline-block;
-        
-        /* Transisi halus */
-        transition: background-color 0.3s ease;
-    }
+.btn-login{
+    background:linear-gradient(135deg,#4e73df,#224abe);
+    border:none;
+    color:white;
+    border-radius:10px;
+    padding:8px 18px;
+    font-weight:500;
+    transition:0.3s;
+    float:right;
+}
 
-    /* Efek saat Kursor di atas tombol (Hover) */
-    .login-button:hover {
-        background-color: #057a43; /* Hijau */
-    }
+.btn-login:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+    /* responsive untuk layar HP */
+/* RESPONSIVE TABLET */
+@media (max-width:768px){
+
+body{
+    padding:10px;
+}
+
+h3{
+    font-size:20px;
+}
+
+.login-button{
+    float:none;
+    display:block;
+    width:100%;
+    text-align:center;
+    margin-top:10px;
+}
+
+.row{
+    display:block;
+}
+
+.col-md-4{
+    width:100%;
+    margin-bottom:10px;
+}
+
+.calendar-wrapper{
+    padding:10px;
+    border-radius:15px;
+}
+
+#calendar{
+    font-size:12px;
+}
+
+.fc-toolbar-title{
+    font-size:16px !important;
+}
+
+.fc-button{
+    font-size:12px !important;
+    padding:4px 8px !important;
+}
+
+.modal-dialog{
+    margin:10px;
+}
+
+}
+
+
+/* RESPONSIVE MOBILE KECIL */
+@media (max-width:480px){
+
+h3{
+    text-align:center;
+    font-size:18px;
+}
+
+.login-button{
+    font-size:14px;
+    padding:8px;
+}
+
+.fc-toolbar{
+    flex-direction:column;
+    gap:5px;
+}
+
+.fc-toolbar-title{
+    font-size:14px !important;
+}
+
+.fc-daygrid-event{
+    font-size:10px !important;
+}
+
+.fc-daygrid-day-number{
+    width:22px;
+    height:22px;
+    font-size:10px;
+}
+
+.calendar-wrapper{
+    padding:8px;
+}
+
+.form-control{
+    font-size:14px;
+}
+
+}
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+let hitungL = 0;
+let waktuTerakhir = 0;
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key.toLowerCase() === "l"){
+
+        let sekarang = new Date().getTime();
+
+        if(sekarang - waktuTerakhir < 2000){
+            hitungL++;
+        } else {
+            hitungL = 1;
+        }
+
+        waktuTerakhir = sekarang;
+
+        if(hitungL === 3){
+            window.location.href = "auth/login.php";
+        }
+
+    }
+
+});
+</script>
 
 </head>
 <body class="container mt-4">
 
-<h3>Monitoring Laporan Magang</h3>
-<a href="auth/login.php" class="login-button">Login</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4 rounded">
+<div class="container-fluid">
+
+<a class="navbar-brand fw-semibold" href="#">
+Monitoring Laporan Magang
+</a>
+</div>
+</nav>
+
+
 <form method="GET" class="mb-4">
     <div class="row">
         <div class="col-md-4">

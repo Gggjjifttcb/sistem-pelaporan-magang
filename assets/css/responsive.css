@@ -1,0 +1,56 @@
+/* Responsive Mobile */
+
+body{
+    padding:15px;
+}
+
+table{
+    width:100%;
+}
+
+@media (max-width:768px){
+
+    h3,h4{
+        font-size:18px;
+        text-align:center;
+    }
+
+    .row{
+        display:block;
+    }
+
+    .row .col{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    .form-control{
+        width:100%;
+    }
+
+    button{
+        width:100%;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    table th, table td{
+        padding:8px;
+        text-align:center;
+    }
+
+}
+
+/* Responsive tabel untuk layar sangat kecil */
+
+@media (max-width:576px){
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+}

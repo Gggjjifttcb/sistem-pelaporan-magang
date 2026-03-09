@@ -27,6 +27,8 @@ AND id NOT IN (SELECT user_id FROM peserta_magang)
 <head>
 <title>Input Data Magang</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/responsive.css">
+
 </head>
 <body class="container mt-4">
 

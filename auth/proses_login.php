@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include "../config/koneksi.php";
 
 $username = trim($_POST['username']);

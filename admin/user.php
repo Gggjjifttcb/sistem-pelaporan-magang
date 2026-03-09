@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include "../config/koneksi.php";
 if($_SESSION['role']!='admin'){
     header("Location: ../auth/login.php");
@@ -11,7 +11,19 @@ $data = mysqli_query($conn,"SELECT * FROM users");
 <html>
 <head>
     <title>Kelola User</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/css/user.css">
+    <style>
+        @media (max-width:400px){
+    .container{
+        flex-direction: column;
+    }
+
+    .box{
+        width: 100%;
+    }
+}
+    </style>
 </head>
 <body class="container mt-4">
 

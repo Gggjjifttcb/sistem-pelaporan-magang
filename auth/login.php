@@ -5,7 +5,23 @@ session_start();
 <html>
 <head>
     <title>Login Sistem Pelaporan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../assets/css/login.css">
+    <style>
+        @media (max-width:400px){
+    .container{
+        flex-direction: column;
+    }
+
+    .box{
+        width: 100%;
+    }
+}
+.error-message{
+    color: #dc3545; /* Merah */
+    
+}
+    </style>
 </head>
 <body>
 
