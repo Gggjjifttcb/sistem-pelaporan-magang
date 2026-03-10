@@ -236,8 +236,10 @@ h3{
 .form-control{
     font-size:14px;
 }
-
+nav{
+    text-align:center;
 }
+
 
 </style>
 
